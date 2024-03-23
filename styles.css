@@ -43,7 +43,7 @@ body {
   margin-right: 0.7rem;
 }
 
-.output .secondary-operand {
+.output .primary-operand {
   color: white;
   font-size: 2.5rem;
 }
