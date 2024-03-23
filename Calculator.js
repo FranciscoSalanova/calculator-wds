@@ -18,8 +18,23 @@ export default class Calculator {
     this.operation.textContent = ''
   }
 
-  addDigit(digit) {}
-  removeDigit() {}
+  /** Adds a new digit to the primary operand section of the output. */
+  addDigit(digit) {
+    if (this.primaryOperand.textContent === '0') {
+      this.primaryOperand.textContent = ''
+    }
+    this.primaryOperand.textContent = this.primaryOperand.textContent + digit
+  }
+
+  /** Removes the last digit from the primary operand section of the output. */
+  removeDigit() {
+    if (this.primaryOperand.textContent === '0') return
+    this.primaryOperand.textContent = this.primaryOperand.textContent.slice(
+      0,
+      this.primaryOperand.textContent.length - 1
+    )
+  }
+
   chooseOperation(operand) {}
   evaluate() {}
 }
