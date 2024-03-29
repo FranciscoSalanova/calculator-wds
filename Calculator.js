@@ -4,21 +4,43 @@ export default class Calculator {
     secondaryOperandDisplay,
     operationDisplay
   ) {
-    this.primaryOperand = primaryOperandDisplay
-    this.secondaryOperand = secondaryOperandDisplay
-    this.operation = operationDisplay
+    this.primaryOperandDisplay = primaryOperandDisplay
+    this.secondaryOperandDisplay = secondaryOperandDisplay
+    this.operationDisplay = operationDisplay
 
     this.clearAll()
   }
 
-  /** Clear all the content from the output section of the calculator. */
-  clearAll() {
-    this.primaryOperand.textContent = 0
-    this.secondaryOperand.textContent = ''
-    this.operation.textContent = ''
+  get primaryOperand() {
+    return parseFloat(this.primaryOperandDisplay.textContent)
   }
 
-  addDigit(digit) {}
+  set primaryOperand(value) {
+    this.primaryOperandDisplay.textContent = value ?? ""
+  }
+
+  set secondaryOperand(value) {
+    this.secondaryOperandDisplay.textContent = value ?? ""
+  }
+
+  set operation(value) {
+    this.operationDisplay.textContent = value ?? ""
+  }
+
+  /** Clear all the content from the output section of the calculator. */
+  clearAll() {
+    this.primaryOperand = 0
+    this.secondaryOperand.textContent = null
+    this.operation.textContent = null
+  }
+
+  addDigit(digit) {
+    if (this.primaryOperand === 0) {
+      this.primaryOperand = digit
+      return
+    }
+    this.primaryOperand = this.primaryOperand.toString() + digit
+  }
   removeDigit() {}
   chooseOperation(operand) {}
   evaluate() {}
