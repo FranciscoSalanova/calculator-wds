@@ -12,15 +12,17 @@ export default class Calculator {
   }
 
   get primaryOperand() {
-    return parseFloat(this.primaryOperandDisplay.textContent)
+    return parseFloat(this.primaryOperandDisplay.dataset.value)
   }
 
   set primaryOperand(value) {
-    this.primaryOperandDisplay.textContent = value ?? ""
+    this.primaryOperandDisplay.dataset.value = value ?? ""
+    this.primaryOperandDisplay.textContent = displayNumber(value ?? "")
   }
 
   set secondaryOperand(value) {
-    this.secondaryOperandDisplay.textContent = value ?? ""
+    this.secondaryOperandDisplay.dataset.value = value ?? ""
+    this.secondaryOperandDisplay.textContent = displayNumber(value)
   }
 
   set operation(value) {
@@ -30,18 +32,32 @@ export default class Calculator {
   /** Clear all the content from the output section of the calculator. */
   clearAll() {
     this.primaryOperand = 0
-    this.secondaryOperand.textContent = null
-    this.operation.textContent = null
+    this.secondaryOperand = null
+    this.operation = null
   }
 
   addDigit(digit) {
+    if (digit === "." && this.primaryOperandDisplay.dataset.value.includes("."))
+      return
     if (this.primaryOperand === 0) {
       this.primaryOperand = digit
       return
     }
-    this.primaryOperand = this.primaryOperand.toString() + digit
+    this.primaryOperand = this.primaryOperandDisplay.dataset.value + digit
   }
+
   removeDigit() {}
   chooseOperation(operand) {}
   evaluate() {}
+}
+
+const NUMBER_FORMATTER = new Intl.NumberFormat("en")
+
+function displayNumber(number) {
+  const stringNumber = number?.toString() || ""
+  if (stringNumber === "") return ""
+  const [integer, decimal] = stringNumber.split(".")
+  const formattedInteger = NUMBER_FORMATTER.format(integer)
+  if (decimal == null) return formattedInteger
+  return formattedInteger + "." + decimal
 }
