@@ -11,20 +11,24 @@ export default class Calculator {
     this.clearAll()
   }
 
+  /** Gets the primary operand parsed into a float in order to perform operations. */
   get primaryOperand() {
     return parseFloat(this.primaryOperandDisplay.dataset.value)
   }
 
+  /** Sets the primary operand into the dataset and the text content from the HTML element. */
   set primaryOperand(value) {
     this.primaryOperandDisplay.dataset.value = value ?? ""
     this.primaryOperandDisplay.textContent = displayNumber(value ?? "")
   }
 
+  /** Sets the secondary operand into the dataset and the text content from the HTML element. */
   set secondaryOperand(value) {
     this.secondaryOperandDisplay.dataset.value = value ?? ""
     this.secondaryOperandDisplay.textContent = displayNumber(value)
   }
 
+  /** Sets the operand selected into the text content from the HTML element. */
   set operation(value) {
     this.operationDisplay.textContent = value ?? ""
   }
