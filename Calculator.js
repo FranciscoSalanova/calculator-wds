@@ -79,6 +79,10 @@ export default class Calculator {
     this.primaryOperand = numberString.substring(0, numberString.length - 1)
   }
 
+  clear() {
+    this.primaryOperand = 0
+  }
+
   chooseOperation(operation) {
     if (this.operation !== "") return
     this.secondaryOperand = this.primaryOperand
