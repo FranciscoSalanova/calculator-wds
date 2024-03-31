@@ -1,0 +1,5 @@
+features:
+1. new clear button
+2. update UI design
+3. history of operations
+4. scientific mode
