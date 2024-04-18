@@ -4,12 +4,17 @@
   "description": "",
   "main": "Calculator.js",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "serve",
+    "build": "parcel build index.html",
+    "cy:open": "cypress open",
+    "test": "start-server-and-test serve cy:open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "serve": "^14.2.1",
+    "start-server-and-test": "^2.0.3"
   }
 }
