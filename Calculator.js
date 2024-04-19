@@ -72,7 +72,7 @@ export default class Calculator {
 
   removeDigit() {
     const numberString = this.#primaryOperandDisplay.dataset.value
-    if (this.primaryOperand <= 1) {
+    if (this.#primaryOperandDisplay.textContent.length === 1) {
       this.primaryOperand = 0
       return
     }
